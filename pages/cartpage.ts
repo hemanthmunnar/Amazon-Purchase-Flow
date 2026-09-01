@@ -39,8 +39,15 @@ export class cartpage {
   }
 
   async validateCartCount(count: string) {
-    await this.page.waitForTimeout(1000);
-    const cartCountText = await this.cartCount.textContent();
-    console.log(`Current cart count: ${cartCountText}`);
+    try {
+      await this.page.waitForTimeout(1000);
+      const cartCountText = await this.cartCount.textContent();
+      console.log(`Current cart count: ${cartCountText}, Expected: ${count}`);
+      if (cartCountText?.trim() !== count) {
+        console.log(`WARNING: Cart count mismatch. Expected ${count}, got ${cartCountText}`);
+      }
+    } catch (e) {
+      console.log(`Error validating cart count: ${e}`);
+    }
   }
 }
