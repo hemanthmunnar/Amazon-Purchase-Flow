@@ -4,7 +4,7 @@ import { searchpage } from '../pages/searchpage';
 import { cartpage } from '../pages/cartpage';
 import { checkoutpage } from '../pages/checkoutpage';
 
-test('Amazon shopping flow - 15 steps', async ({ page }) => {
+test('Amazon shopping flow', async ({ page }) => {
   test.setTimeout(120000);
 
   const home = new homepage(page);
@@ -24,7 +24,6 @@ test('Amazon shopping flow - 15 steps', async ({ page }) => {
 
   await search.openNthItem(1);
   
-  // Wait for add to cart button and click it
   const addToCartBtn = page.locator("//button[@id='add-to-cart-button'] | //input[@id='add-to-cart-button'] | //input[@name='submit.add-to-cart']").first();
   if (await addToCartBtn.count() > 0) {
     await addToCartBtn.click();
