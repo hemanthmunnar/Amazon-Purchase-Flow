@@ -17,16 +17,13 @@ export class homepage {
   }
 
   async navigateToComputers() {
-    // Click on Computers & Accessories department
     await this.computersDropdown.selectOption('search-alias=computers');
   }
 
   async navigateToLaptops() {
-    // Search for laptops
     await this.searchBox.fill('Laptops');
     await this.searchBox.press('Enter');
     await this.page.waitForLoadState('domcontentloaded');
-    // Wait for results to load
     await this.page.waitForTimeout(3000);
   }
 

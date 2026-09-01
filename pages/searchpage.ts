@@ -11,7 +11,6 @@ export class searchpage {
 
   async applyBrandFilter(brand: string) {
     try {
-      // Try to find and click brand filter checkbox
       const brandCheckbox = this.page.locator(`//span[text()='${brand}']/preceding::input[1]`);
       if (await brandCheckbox.count() > 0) {
         await brandCheckbox.click();
@@ -42,16 +41,12 @@ export class searchpage {
 
   async openNthItem(n: number) {
     try {
-      // Wait a bit for items to render
       await this.page.waitForTimeout(2000);
-      
-      // Count total items
       const itemCount = await this.items.count();
       console.log(`Total items found: ${itemCount}`);
       
       if (n >= itemCount) {
         console.log(`Item ${n} not found, using item ${itemCount - 1}`);
-        // Use last available item if requested item doesn't exist
         const lastItem = this.items.nth(itemCount - 1);
         const link = lastItem.locator('a[href*="/dp/"]').first();
         if (await link.count() > 0) {
@@ -66,7 +61,6 @@ export class searchpage {
         }
       }
       
-      // Get the nth item and find the product link
       const item = this.items.nth(n);
       const itemLink = item.locator('a[href*="/dp/"]').first();
       

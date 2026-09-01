@@ -30,7 +30,6 @@ export class cartpage {
   }
 
   async validateItemRemoved() {
-    // Check if item was removed by verifying removal message or cart content changed
     const removedMsg = this.page.locator("//div[contains(text(), 'Removed')]");
     const cartEmpty = this.page.locator("//div[contains(text(), 'Your Amazon Cart is empty')]");
     
